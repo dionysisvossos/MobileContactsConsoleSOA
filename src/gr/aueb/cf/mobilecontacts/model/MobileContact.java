@@ -7,7 +7,7 @@ public class MobileContact extends AbstractEntity {
     private String lastname;
     private String phoneNumber;
 
-    public MobileContact() {
+    public MobileContact(Object o, String firstname, String lastname, String phoneNumber) {
     }
 
     public MobileContact(String firstname, String lastname, String phoneNumber) {
