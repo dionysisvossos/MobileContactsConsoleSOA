@@ -117,7 +117,7 @@ public class MobileContactServiceImpl implements IMobileContactService {
     }
 
     @Override
-    public void deleteByPhoneNumber(String phoneNumber) throws ContactNotFoundException {
+    public void deleteContactByPhoneNumber(String phoneNumber) throws ContactNotFoundException {
         try {
             if (!dao.phoneNumberExists(phoneNumber)) {
                 throw new ContactNotFoundException("Contact with phone number: " + phoneNumber + " not found for deletion");

@@ -25,7 +25,7 @@ public interface IMobileContactService {
     MobileContact getContactByPhoneNumber(String phoneNumber)
             throws  ContactNotFoundException;
 
-    void deleteByPhoneNumber(String phoneNumber)
+    void deleteContactByPhoneNumber(String phoneNumber)
             throws ContactNotFoundException;
 }
 

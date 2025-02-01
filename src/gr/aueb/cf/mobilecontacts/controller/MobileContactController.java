@@ -14,7 +14,8 @@ import gr.aueb.cf.mobilecontacts.service.IMobileContactService;
 import gr.aueb.cf.mobilecontacts.service.MobileContactServiceImpl;
 import gr.aueb.cf.mobilecontacts.validation.ValidationUtil;
 
-import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MobileContactController {
 
@@ -79,6 +80,46 @@ public class MobileContactController {
             return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
         } catch(ContactNotFoundException e) {
             return "Error \n Η επαφή δεν βρέθηκε";
+        }
+    }
+
+    public List<String> getAllContacts() {
+        List<MobileContact> contacts;
+        List<String> serializedList = new ArrayList<>();
+        MobileContactReadOnlyDTO readOnlyDTO;
+        String serialized;
+
+        contacts = service.getAllContacts();
+        for (MobileContact contact : contacts) {
+            readOnlyDTO = Mapper.mapMobileContactToDTO(contact);
+            serialized = Serializer.serializeDTO(readOnlyDTO);
+            serializedList.add(serialized);
+        }
+        return serializedList;
+    }
+
+    public String getContactByPhoneNumber(String phoneNumber) {
+        MobileContact mobileContact;
+        MobileContactReadOnlyDTO readOnlyDTO;
+        try {
+            mobileContact = service.getContactByPhoneNumber(phoneNumber);
+            readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
+            return "OK\n" + Serializer.serializeDTO(readOnlyDTO);
+        } catch(ContactNotFoundException e) {
+            return "Error \n Η επαφή δεν βρέθηκε";
+        }
+    }
+
+    public String deleteContactByPhoneNumber(String phoneNumber) {
+        MobileContact mobileContact;
+        MobileContactReadOnlyDTO readOnlyDTO;
+        try {
+            mobileContact = service.getContactByPhoneNumber(phoneNumber);
+            readOnlyDTO = Mapper.mapMobileContactToDTO(mobileContact);
+            service.deleteContactByPhoneNumber(phoneNumber);
+            return "OK\n Η επαφή διεγράφη" + Serializer.serializeDTO(readOnlyDTO);
+        } catch (ContactNotFoundException e) {
+            return "Error\n Λάθος κατά τη διαγραφή. Η επαφή δεν βρέθηκε";
         }
     }
 }
