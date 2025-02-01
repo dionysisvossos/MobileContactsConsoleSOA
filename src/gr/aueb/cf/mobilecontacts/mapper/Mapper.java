@@ -25,9 +25,9 @@ public class Mapper {
 
     public static MobileContactReadOnlyDTO mapMobileContactToDTO(MobileContact mobileContact) {
         return new MobileContactReadOnlyDTO(mobileContact.getId(),
-                mobileContact.getFirstname(),
-                mobileContact.getLastname(),
-                mobileContact.getPhoneNumber());
+                                            mobileContact.getFirstname(),
+                                            mobileContact.getLastname(),
+                                            mobileContact.getPhoneNumber());
     }
 }
 

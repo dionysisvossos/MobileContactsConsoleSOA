@@ -9,10 +9,11 @@ public class MobileContactInsertDTO {
 
     }
 
-    public MobileContactInsertDTO(String phoneNumber, String lastname, String firstname) {
-        this.phoneNumber = phoneNumber;
-        this.lastname = lastname;
+    public MobileContactInsertDTO(String firstname, String lastname, String phoneNumber) {
+
         this.firstname = firstname;
+        this.lastname = lastname;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstname() {
